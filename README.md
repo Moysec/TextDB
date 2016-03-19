@@ -17,7 +17,7 @@ from os.path import abspath
 from os.path import dirname
 from sys import path
 
-environ['DBMSPATH'] = abspath(dirname(__file__)) + "/TextDB"
+environ['DBMSPATH'] = abspath(dirname(__file__))
 path.append(environ.get('DBMSPATH'))
 
 import TextDB
