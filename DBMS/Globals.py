@@ -6,5 +6,6 @@ class Globals():
         self._Select = ENV.get('DBMSPATH')+"/TextDB/DBMS/scripts/select.sh"
         self._Update = ENV.get('DBMSPATH')+"/TextDB/DBMS/scripts/update.sh"
         self._Delete = ENV.get('DBMSPATH')+"/TextDB/DBMS/scripts/delete.sh"
+        self._CreateSchema = ENV.get('DBMSPATH')+"/TextDB/DBMS/scripts/create_schema.sh"
         self.DBPATH = ENV.get("DBPATH")
 

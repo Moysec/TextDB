@@ -10,16 +10,24 @@ class DBMS():
         self.db_name = db_name
         self.data_dict = data_dict
         self.data_str = ""
+        self.key_str = ""
         if len(data_dict) != 0 or data_dict != {}:
             self.data_str = " ".join([str(data_dict[x]) for x in data_dict])
-
+            self.key_str = " ".join([str(x) for x in data_dict])
         if not ISFILE(Globals().DBPATH + "/" + self.db_name + ".db"):
             self.create_db()
+            self.create_sch()
         return
 
     def create_db(self):
         args_list = [Globals()._Create, 
                      self.db_name]
+        process = SUBPopen(args_list, stdout=SUBPIPE, stderr=SUBPIPE)
+
+    def create_sch(self):
+        args_list = [Globals()._CreateSchema,
+                    self.db_name,
+                    self.key_str]
         process = SUBPopen(args_list, stdout=SUBPIPE, stderr=SUBPIPE)
 
 
