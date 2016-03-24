@@ -95,4 +95,35 @@ class DBMS():
             return {"err": None, "result": "OK"}
         else:
             return {"err": stderr, "result": stdout}
+    def deleteDatabase(self):
+        args_list = [Globals()._DeleteDatabase,
+                     self.db_name]
+        process = SUBPopen(args_list, stdout=SUBPIPE, stderr=SUBPIPE)
+        stdout, stderr = process.communicate()
+        if stderr:
+            return {"err": stderr, "result": None}
+
+        if stdout in ["\n", ""]:
+            return {"err": None, "result": "OK"}
+        else:
+            return {"err": stderr, "result": stdout}
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
