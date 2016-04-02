@@ -74,11 +74,14 @@ class DBMS():
             return {"err":None, "result": result_lst}
             
 
-    def update(self, select_flag):
+
+    def update(self, field, data, update_dict):
+        temp_dict = [k+":"+v for k, v in update_dict.iteritems()]        
         args_list = [Globals()._Update,
                      self.db_name,
-                     select_flag,
-                     self.data_str]
+                     field,
+                     data,
+                     ] + temp_dict
         process = SUBPopen(args_list, stdout=SUBPIPE, stderr=SUBPIPE)
         stdout, stderr = process.communicate()
         if stderr:
@@ -89,25 +92,10 @@ class DBMS():
         else:
             return {"err": stderr, "result": None}
 
-#    def delete(self):
-# 	self.data_str = self.data_str.replace("/", "\/")
-#        args_list = [Globals()._Delete,
-#                     self.db_name,
-#                     self.data_str]
-#        process = SUBPopen(args_list, stdout=SUBPIPE, stderr=SUBPIPE)
-#        stdout, stderr = process.communicate()
-#        if stderr:
-#            return {"err": stderr, "result": None}
-#
-#        if stdout in ["\n", ""]:
-#            return {"err": None, "result": "OK"}
-#        else:
-#            return {"err": stderr, "result": stdout}
 
     def delete(self, field, data):
  	if not isinstance(field, basestring) or not isinstance(data, basestring):
  	    return {"err": "You cannot do that", "result": None}
- 	#self.data_str = self.data_str.replace("/", "\/")
         args_list = [Globals()._Delete,
                      self.db_name,
                      field,
@@ -135,22 +123,3 @@ class DBMS():
         else:
             return {"err": stderr, "result": stdout}
             
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
