@@ -89,11 +89,29 @@ class DBMS():
         else:
             return {"err": stderr, "result": None}
 
-    def delete(self):
- 	self.data_str = self.data_str.replace("/", "\/")
+#    def delete(self):
+# 	self.data_str = self.data_str.replace("/", "\/")
+#        args_list = [Globals()._Delete,
+#                     self.db_name,
+#                     self.data_str]
+#        process = SUBPopen(args_list, stdout=SUBPIPE, stderr=SUBPIPE)
+#        stdout, stderr = process.communicate()
+#        if stderr:
+#            return {"err": stderr, "result": None}
+#
+#        if stdout in ["\n", ""]:
+#            return {"err": None, "result": "OK"}
+#        else:
+#            return {"err": stderr, "result": stdout}
+
+    def delete(self, field, data):
+ 	if not isinstance(field, basestring) or not isinstance(data, basestring):
+ 	    return {"err": "You cannot do that", "result": None}
+ 	#self.data_str = self.data_str.replace("/", "\/")
         args_list = [Globals()._Delete,
                      self.db_name,
-                     self.data_str]
+                     field,
+                     data]
         process = SUBPopen(args_list, stdout=SUBPIPE, stderr=SUBPIPE)
         stdout, stderr = process.communicate()
         if stderr:
@@ -103,6 +121,7 @@ class DBMS():
             return {"err": None, "result": "OK"}
         else:
             return {"err": stderr, "result": stdout}
+
     def deleteDatabase(self):
         args_list = [Globals()._DeleteDatabase,
                      self.db_name]
