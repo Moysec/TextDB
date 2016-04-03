@@ -7,5 +7,6 @@ class Globals():
         self._Update = ENV.get('DBMSPATH')+"/TextDB/DBMS/scripts/update.sh"
         self._Delete = ENV.get('DBMSPATH')+"/TextDB/DBMS/scripts/delete.sh"
         self._CreateSchema = ENV.get('DBMSPATH')+"/TextDB/DBMS/scripts/create_schema.sh"
+        self._DeleteDatabase = ENV.get('DBMSPATH')+"/TextDB/DBMS/scripts/delete_db.sh"
         self.DBPATH = ENV.get("DBPATH")
 
